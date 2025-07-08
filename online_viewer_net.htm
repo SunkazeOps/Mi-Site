@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zentry - Plataforma de servicios bajo demanda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #6b21ff 0%, #4318cc 100%);
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .service-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .testimonial-bg {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .animate-bounce-custom {
+            animation: bounce-custom 1.5s infinite;
+        }
+        @keyframes bounce-custom {
+            0%, 100% {
+                transform: translateY(-5%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold text-purple-800">Zentry</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="#" class="border-purple-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Inicio
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Servicios
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            ¿Cómo funciona?
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Para profesionales
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
+                    <button class="bg-purple-100 text-purple-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-200">
+                        Iniciar sesión
+                    </button>
+                    <button class="bg-purple-800 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-900">
+                        Registrarse
+                    </button>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-purple-50 border-purple-500 text-purple-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Inicio</a>
+                <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Servicios</a>
+                <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">¿Cómo funciona?</a>
+                <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Para profesionales</a>
+                <div class="pt-4 pb-3 border-t border-gray-200">
+                    <div class="space-y-1 px-4">
+                        <button class="w-full bg-purple-100 text-purple-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-200">
+                            Iniciar sesión
+                        </button>
+                        <button class="w-full mt-2 bg-purple-800 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-900">
+                            Registrarse
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Encuentra servicios bajo demanda con <span class="text-purple-300">Zentry</span></h1>
+                    <p class="text-lg mb-8 opacity-90">Contrata profesionales cerca de ti o ofrece tus servicios y gana dinero extra. Desde reparaciones hasta clases particulares, todo en un solo lugar.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-purple-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+                            Descargar la App <i class="fas fa-arrow-down ml-2"></i>
+                        </button>
+                        <button class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-800 transition duration-300">
+                            Explorar servicios
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Personas trabajando" class="rounded-xl shadow-2xl w-full h-auto">
+                    <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg text-gray-800 w-2/3">
+                        <div class="flex items-center mb-2">
+                            <div class="flex -space-x-2">
+                                <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://randomuser.me/api/portraits/women/17.jpg" alt="Cliente">
+                                <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profesional">
+                            </div>
+                            <span class="ml-2 text-xs font-semibold">450K+ profesionales</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-xs">Servicio contratado:</p>
+                                <p class="font-semibold">Instalación eléctrica</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs">Calificación:</p>
+                                <div class="flex items-center justify-end">
+                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                    <span class="font-semibold">4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="bg-white py-8 -mt-8 z-10 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="shadow-xl rounded-xl overflow-hidden">
+                <div class="bg-white p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">¿Qué servicio necesitas hoy?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Ejemplo: Plomería, Clases de yoga..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none">
+                                <option>Selecciona categoría</option>
+                                <option>Reparaciones</option>
+                                <option>Clases</option>
+                                <option>Tecnología</option>
+                                <option>Belleza</option>
+                                <option>Salud</option>
+                                <option>Eventos</option>
+                                <option>Otros</option>
+                            </select>
+                        </div>
+                        <button class="w-full bg-purple-800 text-white px-4 py-3 rounded-lg font-medium hover:bg-purple-900 transition duration-300">
+                            Buscar profesionales
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Descubre servicios en todas las categorías</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Zentry conecta clientes con profesionales independientes en más de 50 categorías de servicios.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Category 1 -->
+                <div class="category-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4 text-center">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-wrench text-purple-800 text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Reparaciones</h3>
+                        <p class="text-xs text-gray-500">550K+ profesionales</p>
+                    </div>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="category-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4 text-center">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-cut text-purple-800 text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Belleza</h3>
+                        <p class="text-xs text-gray-500">320K+ profesionales</p>
+                    </div>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4 text-center">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-laptop-code text-purple-800 text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Tecnología</h3>
+                        <p class="text-xs text-gray-500">280K+ profesionales</p>
+                    </div>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="category-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4 text-center">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-chalkboard-teacher text-purple-800 text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Clases</h3>
+                        <p class="text-xs text-gray-500">410K+ profesionales</p>
+                    </div>
+                </div>
+                
+                <!-- Category 5 -->
+                <div class="category-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4 text-center">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-paint-brush text-purple-800 text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Arte</h3>
+                        <p class="text-xs text-gray-500">150K+ profesionales</p>
+                    </div>
+                </div>
+                
+                <!-- Category 6 -->
+                <div class="category-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4 text-center">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-baby text-purple-800 text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Cuidado</h3>
+                        <p class="text-xs text-gray-500">190K+ profesionales</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="px-6 py-3 rounded-lg font-medium text-purple-800 hover:text-purple-600 transition duration-300 inline-flex items-center">
+                    Ver todas las categorías <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">¿Cómo funciona Zentry?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Encuentra y contrata profesionales de manera fácil y segura en solo 3 pasos.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                        <span class="text-purple-800 font-bold text-3xl">1</span>
+                        <div class="animate-bounce-custom absolute -bottom-4 -right-4 bg-purple-800 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Busca un servicio</h3>
+                    <p class="text-gray-600">Encuentra profesionales cerca de ti o filtra por categoría, precio y disponibilidad.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                        <span class="text-purple-800 font-bold text-3xl">2</span>
+                        <div class="animate-bounce-custom absolute -bottom-4 -right-4 bg-purple-800 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Contrata al profesional</h3>
+                    <p class="text-gray-600">Revisa perfiles, calificaciones y selecciona el profesional que mejor se adapte a tus necesidades.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                        <span class="text-purple-800 font-bold text-3xl">3</span>
+                        <div class="animate-bounce-custom absolute -bottom-4 -right-4 bg-purple-800 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Disfruta del servicio</h3>
+                    <p class="text-gray-600">Recibe el servicio y califica al profesional. ¡Así de sencillo!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Services Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Servicios destacados</h2>
+                    <p class="text-gray-600">Los servicios mejor calificados por nuestros usuarios</p>
+                </div>
+                <button class="hidden sm:flex items-center text-purple-800 hover:text-purple-600 font-medium">
+                    Ver todos <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1558002037-6d141a9c1e3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Electricista trabajando" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-purple-800 text-white text-xs font-bold px-2 py-1 rounded">
+                            Destacado
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Instalación eléctrica</h3>
+                                <p class="text-sm text-gray-500">Por Juan Pérez</p>
+                            </div>
+                            <div class="flex items-center bg-yellow-100 px-2 py-1 rounded">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold text-sm">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Servicio completo de instalación eléctrica residencial con materiales de calidad.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-purple-800">$75/h</span>
+                            <button class="text-white bg-purple-800 hover:bg-purple-900 px-4 py-2 rounded-lg text-sm font-medium transition duration-300">
+                                Contratar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Clases de yoga" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Clases de yoga</h3>
+                                <p class="text-sm text-gray-500">Por María González</p>
+                            </div>
+                            <div class="flex items-center bg-yellow-100 px-2 py-1 rounded">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold text-sm">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Clases personalizadas de yoga para todos los niveles, en tu hogar o estudio.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-purple-800">$30/h</span>
+                            <button class="text-white bg-purple-800 hover:bg-purple-900 px-4 py-2 rounded-lg text-sm font-medium transition duration-300">
+                                Contratar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Desarrollo web" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-purple-800 text-white text-xs font-bold px-2 py-1 rounded">
+                            Popular
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Desarrollo web</h3>
+                                <p class="text-sm text-gray-500">Por TechSolutions</p>
+                            </div>
+                            <div class="flex items-center bg-yellow-100 px-2 py-1 rounded">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold text-sm">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Creación y diseño de sitios web profesionales, e-commerce y aplicaciones web.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-purple-800">$120/h</span>
+                            <button class="text-white bg-purple-800 hover:bg-purple-900 px-4 py-2 rounded-lg text-sm font-medium transition duration-300">
+                                Contratar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 sm:hidden">
+                <button class="px-6 py-3 rounded-lg font-medium text-purple-800 hover:text-purple-600 transition duration-300 inline-flex items-center">
+                    Ver todos los servicios <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Become a Professional Section -->
+    <section class="py-16 bg-purple-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h2 class="text-3xl font-bold mb-6">¿Eres un profesional? Únete a Zentry</h2>
+                    <p class="mb-6 opacity-90">Regístrate como profesional y comienza a ofrecer tus servicios a millones de clientes potenciales. Tú decides cuándo, dónde y cómo trabajar.</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-300 mt-1 mr-2"></i>
+                            <span>Llega a nuevos clientes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-300 mt-1 mr-2"></i>
+                            <span>Controla tu agenda y precios</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-300 mt-1 mr-2"></i>
+                            <span>Recibe pagos seguros y puntuales</span>
+                        </li>
+                    </ul>
+                    <button class="bg-white text-purple-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+                        Registrarse como profesional
+                    </button>
+                </div>
+                <div class="order-1 md:order-2">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1511&q=80" alt="Profesional trabajando" class="rounded-xl shadow-xl w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Lo que dicen nuestros usuarios</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Miles de clientes y profesionales ya están disfrutando de los beneficios de Zentry.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-bg rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Ana Martínez</h4>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Encontré un plomero en minutos que resolvió mi problema el mismo día. ¡El servicio fue excelente y el precio muy razonable!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-bg rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Carlos Rodríguez</h4>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Como freelancer, Zentry ha sido una gran herramienta para encontrar nuevos clientes. La plataforma es fácil de usar y los pagos son puntuales."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-bg rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Laura Gómez</h4>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star-half-alt text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Contraté a una profesora de inglés para mis hijos y los resultados han sido increíbles. Flexible, profesional y con precios competitivos."</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="px-6 py-3 rounded-lg font-medium text-purple-800 hover:text-purple-600 transition duration-300 inline-flex items-center">
+                    Ver más testimonios <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="py-16 bg-gradient-to-r from-purple-900 to-purple-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Descarga la app de Zentry</h2>
+                    <p class="mb-8 opacity-90">Accede a miles de servicios profesionales desde tu teléfono. Disponible para iOS y Android.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 inline-flex items-center justify-center">
+                            <i class="fab fa-apple text-2xl mr-2"></i>
+                            <div class="text-left">
+                                <span class="text-xs block">Descargar en</span>
+                                <span class="font-semibold">App Store</span>
+                            </div>
+                        </button>
+                        <button class="bg-white text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 inline-flex items-center justify-center">
+                            <i class="fab fa-google-play text-2xl mr-2"></i>
+                            <div class="text-left">
+                                <span class="text-xs block">Descargar en</span>
+                                <span class="font-semibold">Google Play</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1609921212029-bf5a14045d3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="App móvil" class="rounded-xl shadow-2xl w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                <div class="col-span-2">
+                    <h3 class="text-2xl font-bold mb-4">Zentry</h3>
+                    <p class="text-gray-400 mb-4">La plataforma líder para encontrar y ofrecer servicios profesionales bajo demanda.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Servicios</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Reparaciones</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Clases</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Tecnología</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Belleza</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Eventos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Para profesionales</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Únete como profesional</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Centro de ayuda</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Tarifas</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Seguridad</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Compañía</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Sobre nosotros</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Términos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacidad</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Política de cookies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contáctanos</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Zentry. Todos los derechos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Español</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">English</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Français</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Português</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('block');
+                this.innerHTML = '<i class="fas fa-times text-xl"></i>';
+            } else {
+                menu.classList.remove('block');
+                menu.classList.add('hidden');
+                this.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
